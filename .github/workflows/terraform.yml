@@ -1,9 +1,11 @@
+cat > .github/workflows/terraform.yml <<'EOF'
 name: Terraform CI
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   id-token: write
@@ -20,8 +22,12 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-to-assume: arn:aws:iam::954935267670:role/GitHubActionsTerraformRole
           aws-region: us-east-1
+          role-session-name: GitHubActionsTerraform
+
+      - name: Verify AWS Identity
+        run: aws sts get-caller-identity
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
@@ -34,3 +40,4 @@ jobs:
 
       - name: Terraform Plan
         run: terraform plan
+EOF
