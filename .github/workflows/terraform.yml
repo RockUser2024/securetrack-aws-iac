@@ -33,5 +33,4 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform planname: Terraform CI
-
+        run: terraform plan
