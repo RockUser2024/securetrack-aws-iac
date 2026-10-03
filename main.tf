@@ -20,4 +20,7 @@ module "ec2" {
   subnet_id         = module.vpc.public_subnet_1_id
   security_group_id = module.security.security_group_id
 }
+module "ecr" {
+  source = "./modules/ecr"
+}
 
