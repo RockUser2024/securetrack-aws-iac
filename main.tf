@@ -24,3 +24,10 @@ module "ecr" {
   source = "./modules/ecr"
 }
 
+module "eks" {
+  source = "./modules/eks"
+
+  public_subnet_1_id = module.vpc.public_subnet_1_id
+  public_subnet_2_id = module.vpc.public_subnet_2_id
+}
+
