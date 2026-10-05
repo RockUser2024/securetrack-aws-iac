@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: securetrack-php
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: securetrack-php
+
+  template:
+    metadata:
+      labels:
+        app: securetrack-php
+
+    spec:
+      containers:
+      - name: securetrack-php
+        image: 954935267670.dkr.ecr.us-east-1.amazonaws.com/securetrack-php-repo:latest
+        ports:
+        - containerPort: 80
