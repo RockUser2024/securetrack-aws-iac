@@ -30,6 +30,13 @@ jobs:
         run: |
           docker tag securetrack-php:latest 954935267670.dkr.ecr.us-east-1.amazonaws.com/securetrack-php-repo:latest
 
+      - name: Run Trivy Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: securetrack-php:latest
+          format: table
+          severity: CRITICAL,HIGH
+
       - name: Push Docker Image
         run: |
           docker push 954935267670.dkr.ecr.us-east-1.amazonaws.com/securetrack-php-repo:latest
