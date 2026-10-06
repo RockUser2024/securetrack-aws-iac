@@ -17,6 +17,9 @@ jobs:
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
 
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-action@v1.0.3
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
